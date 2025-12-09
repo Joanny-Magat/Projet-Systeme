@@ -9,7 +9,7 @@ Il renvoie un dictionnaire de liste dont la clée est la plages de longueurs d'o
 la valeur une liste contenant le nombre d'intensité par plage, le minimum d'intensité pour la plage,
 la moyenne et le maximum. 
 """
-#Test changement git 1
+#Exemple de ce qu'il faut taper sur le terminal pour ouvrir ce script :
 #python3 intensite.py /home/e20210012399/Documents/M1/SYSTEME/PROJET/Spectre_photoluminescence.txt
 
 import sys, re
