@@ -146,4 +146,5 @@ while ScriptNonFini :
         ScriptNonFini=False #En soi inutile car on met un exit() après mais je le met au cas où
         exit()
     else :
-        tailleFenetre=float(input("Nouvelle taille de fenètre de longueur d'onde ?"))
+        tailleFenetre=float(input("Nouvelle taille de fenêtre de longueur d'onde ?"))
+        dico=intensite.DicoStat(intensite.DicoListe(cheminFichier,tailleFenetre))
