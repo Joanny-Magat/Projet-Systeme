@@ -1,3 +1,6 @@
+#Ce script lance simplement recherche_plot.py avec les bons paramètres d'entrée (la vérification des paramètres se font dans intensite.py)
+#Ce sript affiche également une aide si on met en argument help ou -h
+
 clear
 
 #Exemple de ce qu'il faut taper sur le terminal pour ouvrir ce script :
