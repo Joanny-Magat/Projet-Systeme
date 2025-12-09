@@ -108,29 +108,42 @@ def suppressionNone(x,y,y_inc): #Supprime les None pour les trois listes d'un co
 
 #Affichage du plot :
 
-intervalleMin,intervalleMax = demandeIntervalle(tailleFenetre)
+ScriptNonFini=True
 
-x=abscisse(tailleFenetre,intervalleMin,intervalleMax)
-y=ordonnee(dico,x)
-y_inc=incertitude(dico,x)
+while ScriptNonFini :
 
-x,y,y_inc=suppressionNone(x,y,y_inc)
+    intervalleMin,intervalleMax = demandeIntervalle(tailleFenetre)
 
-plt.title("Intensité moyenne en fonction des plages de longueurs d'onde en nm avec incertitude")
-plt.xlabel("Plage de longueurs d'ondes en nm")
-plt.ylabel("Intensité moyenne")
+    x=abscisse(tailleFenetre,intervalleMin,intervalleMax)
+    y=ordonnee(dico,x)
+    y_inc=incertitude(dico,x)
 
+    x,y,y_inc=suppressionNone(x,y,y_inc)
 
-#Gestion de la graduation de l'abscisse pour éviter les chevauchements :
-positions = range(len(x))
-graduationMax=100 #Nombre de graduation arbitraire pour que les graduations ne se chevauchent pas 
-pasAbscisse = max(1,len(x)//graduationMax)
-plt.xticks(positions[::pasAbscisse],rotation=90) #Tourne les abscisses et affiche 1 abscisse sur log(len(x)) 
+    plt.title("Intensité moyenne en fonction des plages de longueurs d'onde en nm avec incertitude")
+    plt.xlabel("Plage de longueurs d'ondes en nm")
+    plt.ylabel("Intensité moyenne")
 
 
-plt.plot(x,y,'g-', label="Courbe reliant les points") #label est la description de la légende
-plt.errorbar(x,y,yerr=y_inc,fmt='o',capsize=5,ecolor='red',label="Points d'intensité moyenne avec leur incertitude") #fmt=style de point, capsize=taille des barres horizontales au bout des incertitudes, ecolor=couleur des barres d'erreur 
+    #Gestion de la graduation de l'abscisse pour éviter les chevauchements :
+    positions = range(len(x))
+    graduationMax=100 #Nombre de graduation arbitraire pour que les graduations ne se chevauchent pas 
+    pasAbscisse = max(1,len(x)//graduationMax)
+    plt.xticks(positions[::pasAbscisse],rotation=90) #Tourne les abscisses et affiche 1 abscisse sur log(len(x)) 
 
-plt.legend(loc="best") #Affiche la légende au meilleur endroit possible
-plt.tight_layout() #Ajuste automatiquement les marges
-plt.show()
+
+    plt.plot(x,y,'g-', label="Courbe reliant les points") #label est la description de la légende
+    plt.errorbar(x,y,yerr=y_inc,fmt='o',capsize=5,ecolor='red',label="Points d'intensité moyenne avec leur incertitude") #fmt=style de point, capsize=taille des barres horizontales au bout des incertitudes, ecolor=couleur des barres d'erreur 
+
+    plt.legend(loc="best") #Affiche la légende au meilleur endroit possible
+    plt.tight_layout() #Ajuste automatiquement les marges
+    plt.show()
+
+    
+    #Demande de fin à l'utilisateur :
+    fin=input("Voulez-vous continuer de modifier le graphe (y/n) ?")
+    if fin != "y" : #Arrête si l'utilisateur met n ou n'importe quoi
+        ScriptNonFini=False #En soi inutile car on met un exit() après mais je le met au cas où
+        exit()
+    else :
+        tailleFenetre=float(input("Nouvelle taille de fenètre de longueur d'onde ?"))
