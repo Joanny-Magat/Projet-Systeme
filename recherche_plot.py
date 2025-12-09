@@ -8,7 +8,7 @@ Script qui demande en input à l'utilisateur un intervalle de longueur d'onde
 et affiche le plot de l'intensité en fonction de la longueur d'onde sur l'intervalle demandé.
 """ 
 
-#python3 recherche_plot.py /home/e20210012399/Documents/M1/SYSTEME/PROJET/Spectre_photoluminescence.txt
+#python3 recherche_plot.py /home/e20210012399/Documents/M1/SYSTEME/PROJET/Dossier-Git/Spectre_photoluminescence.txt
 
 import matplotlib.pyplot as plt 
 import intensite

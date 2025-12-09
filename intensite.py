@@ -10,7 +10,7 @@ la valeur une liste contenant le nombre d'intensité par plage, le minimum d'int
 la moyenne et le maximum. 
 """
 #Exemple de ce qu'il faut taper sur le terminal pour ouvrir ce script :
-#python3 intensite.py /home/e20210012399/Documents/M1/SYSTEME/PROJET/Spectre_photoluminescence.txt
+#python3 intensite.py /home/e20210012399/Documents/M1/SYSTEME/PROJET/Dossier-Git/Spectre_photoluminescence.txt
 
 import sys, re
 
