@@ -39,7 +39,7 @@ def help():
     return cheminFichier,tailleFenetre
 
 
-def premierDico(cheminFichier,tailleFenetre):
+def DicoListe(cheminFichier,tailleFenetre):
     #Ouverture du fichier et séparation des lignes.
     #Les lignes sont séparées en longueur et en intensité.
     #Les données sont stockées dans un premier dictionnaire de clée plage de longueur
@@ -106,14 +106,14 @@ def premierDico(cheminFichier,tailleFenetre):
     return dico1
 
 
-def deuxiemeDico(dico1):
+def DicoStat(dico1):
     #Création du deuxième dictionnaire avec les statistiques
 
     dico2={}
 
     for plage in dico1:
         
-        liste=dico1[plage]
+        liste=dico1[plage] #Liste des intensités pour cette plage
         liste.sort()
         nombre=len(liste)
         
@@ -133,6 +133,4 @@ def deuxiemeDico(dico1):
     return dico2
 
 help()
-
-#cheminFichier,tailleFenetre = help()
-#print(deuxiemeDico(premierDico(cheminFichier,tailleFenetre)))
+#Le help() sert ici lorsque ce script est lancé seul. Il vérifie juste que les paramètres d'entrée soit bon même si en soit il ne renvoie rien

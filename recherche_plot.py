@@ -15,8 +15,8 @@ import matplotlib.pyplot as plt
 import intensite
 
 cheminFichier,tailleFenetre = intensite.help()
-dico=intensite.deuxiemeDico(intensite.premierDico(cheminFichier,tailleFenetre))
-
+dico=intensite.DicoStat(intensite.DicoListe(cheminFichier,tailleFenetre))
+#Dictionnaire contenant pour chaque plage de longueur d'onde les statistiques de l'intensité
 
 def demandeIntervalle(tailleFenetre):
     #Demande de l'intervalle respectant la taille de fenêtre de longueur d'ondes
@@ -41,8 +41,6 @@ def demandeIntervalle(tailleFenetre):
 
         else :
             print("Bornes invalides par rapport à la taille des fenêtres de longueurs d'ondes")
-
-    # #Arrondi des intervalles pour qu'ils correspondent à la taille de fenêtres de longueur d'onde à la place ?
 
     return intervalleMin,intervalleMax
 
@@ -96,7 +94,7 @@ def incertitude(dico,abscisse):
             y_inc.append(None)
     return y_inc
 
-def suppressionNone(x,y,y_inc): #Pas parfait car supprime le nom de l'abscisse aussi
+def suppressionNone(x,y,y_inc): #Supprime les None pour les trois listes d'un coup (plus propre que le faire dans chaque fonction)
     x_co=[]
     y_co=[]
     y_inc_co=[]
@@ -122,15 +120,17 @@ plt.title("Intensité moyenne en fonction des plages de longueurs d'onde en nm a
 plt.xlabel("Plage de longueurs d'ondes en nm")
 plt.ylabel("Intensité moyenne")
 
-#Gestion de la graduation de l'abscisse pour éviter les chevauchements
+
+#Gestion de la graduation de l'abscisse pour éviter les chevauchements :
 positions = range(len(x))
 graduationMax=100 #Nombre de graduation arbitraire pour que les graduations ne se chevauchent pas 
 pasAbscisse = max(1,len(x)//graduationMax)
 plt.xticks(positions[::pasAbscisse],rotation=90) #Tourne les abscisses et affiche 1 abscisse sur log(len(x)) 
 
+
 plt.plot(x,y,'g-', label="Courbe reliant les points") #label est la description de la légende
 plt.errorbar(x,y,yerr=y_inc,fmt='o',capsize=5,ecolor='red',label="Points d'intensité moyenne avec leur incertitude") #fmt=style de point, capsize=taille des barres horizontales au bout des incertitudes, ecolor=couleur des barres d'erreur 
 
-plt.legend(loc="best")
+plt.legend(loc="best") #Affiche la légende au meilleur endroit possible
 plt.tight_layout() #Ajuste automatiquement les marges
 plt.show()
