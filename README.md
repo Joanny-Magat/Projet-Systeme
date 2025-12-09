@@ -18,5 +18,4 @@ Lancez le main.sh avec comme paramètres : <br>
 - le chemin du fichier texte ainsi que la taille de fenêtre de longueur d'onde (facultatif, par défaut 10nm) <br>
 
 Entrez enfin l'intervalle demandé. Chaque borne doit être un multiple de la taille de fenêtre. <br>
-Puisque le fichier texte contient des longueurs d'onde entre 339.67 et 1024.12 nm, il est conseillé de demander l'intervalle [0,2000] (à ajuster si 2000 n'est pas multiple de la taille de fenêtre) afin d'afficher tout le graphe. <br>
-L'utilisateur pourra ensuite zoomer à sa convenance. <br>
+Puisque le fichier texte contient des longueurs d'onde entre 339.67 et 1024.12 nm, il est conseillé de demander l'intervalle [0,2000] (à ajuster si 2000 n'est pas multiple de la taille de fenêtre) afin d'afficher tout le graphe. L'utilisateur pourra ensuite zoomer à sa convenance. <br>
