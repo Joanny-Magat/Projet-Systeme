@@ -6,7 +6,7 @@
 Script qui demande en input à l'utilisateur un intervalle de longueur d'onde
 (sachant que le fichier .txt et la taille de fenêtre de longueur d'onde est demandé en paramètre du script)
 et affiche le plot de l'intensité en fonction de la longueur d'onde sur l'intervalle demandé.
-"""
+""" 
 
 #python3 recherche_plot.py /home/e20210012399/Documents/M1/SYSTEME/PROJET/Spectre_photoluminescence.txt
 
