@@ -128,8 +128,9 @@ graduationMax=100 #Nombre de graduation arbitraire pour que les graduations ne s
 pasAbscisse = max(1,len(x)//graduationMax)
 plt.xticks(positions[::pasAbscisse],rotation=90) #Tourne les abscisses et affiche 1 abscisse sur log(len(x)) 
 
-plt.plot(x,y,'g-')
-plt.errorbar(x,y,yerr=y_inc,fmt='o',capsize=5,ecolor='red') #fmt=style de point, capsize=taille des barres horizontales au bout des incertitudes, ecolor=couleur des barres d'erreur 
+plt.plot(x,y,'g-', label="Courbe reliant les points") #label est la description de la légende
+plt.errorbar(x,y,yerr=y_inc,fmt='o',capsize=5,ecolor='red',label="Points d'intensité moyenne avec leur incertitude") #fmt=style de point, capsize=taille des barres horizontales au bout des incertitudes, ecolor=couleur des barres d'erreur 
 
+plt.legend(loc="best")
 plt.tight_layout() #Ajuste automatiquement les marges
 plt.show()
