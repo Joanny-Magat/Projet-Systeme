@@ -4,10 +4,12 @@ Mail Etudiant : joanny.magat@etu.umontpellier.fr <br>
 Mail Perso : joanny.magat@gmail.com <br>
 Projet de M1 de l'UE Système à la Faculté des Sciences de Montpellier (Année 2025-2026) <br>
 
+
 PRINCIPE DU SCRIPT <br>
 Le but du script est d'analyser un fichier texte contenant le spectre d'une photodiode et d'en renvoyer un graphe. <br>
 Concrètement, le fichier associe pour chaque longueur d'onde une intensité. <br> 
 Le script récupère ces informations et, en demandant une taille de fenêtre de longueur d'onde et un intervalle à l'utilisateur, affiche le graphe des intensités moyennes en fonction de chaque plage de longueur d'onde sur l'intervalle demandé. <br>
+
 
 UTILISATION DU SCRIPT <br>
 Téléchargez tous les fichiers et mettez les dans le même dossier. <br>
