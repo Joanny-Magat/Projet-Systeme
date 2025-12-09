@@ -47,7 +47,7 @@ def DicoListe(cheminFichier,tailleFenetre):
 
 
     #Initialisation du dico
-    dico1 = {}
+    dico = {} #Dictionnaire de sortie
     if tailleFenetre.is_integer():
         plageMin=0
         plageMax= plageMin + int(tailleFenetre)
@@ -55,7 +55,7 @@ def DicoListe(cheminFichier,tailleFenetre):
         plageMin = 0.0 #début de la plage en cours 
         plageMax = plageMin + tailleFenetre
     plage = f"{str(plageMin)}-{str(plageMax)}nm" #str est facultatif mais c'est plus explicite
-    dico1[plage]=[]
+    dico[plage]=[]
 
 
     #Détermination du nombre de décimal de tailleFenetre si celui-ci n'est pas entier:
@@ -82,7 +82,7 @@ def DicoListe(cheminFichier,tailleFenetre):
                 
 
             if plageMin <= longueur and longueur < plageMax : #On est dans la plage donc la clée est déjà créé
-                dico1[plage].append(intensite)
+                dico[plage].append(intensite)
                 
 
             elif longueur >= plageMax :                                   #On sort de la plage mais on n'est pas forcément dans la plage suivante !
@@ -94,26 +94,26 @@ def DicoListe(cheminFichier,tailleFenetre):
                     else :
                         plageMax += tailleFenetre
                         plage = f"{str(round(plageMin,nbDecimal))}-{str(round(plageMax,nbDecimal))}nm" 
-                    dico1[plage]=[]                                       #On crée l'entrée du dico pour cette plage avec une valeur vide
+                    dico[plage]=[]                                       #On crée l'entrée du dico pour cette plage avec une valeur vide
                 #A la sortie du while, la clée est créée pour la longueur actuelle
-                dico1[plage].append(intensite)
+                dico[plage].append(intensite)
 
 
             else : # longueur < plageMin ce qui est normalement impossible
                 print("ERREUR : longueur < plageMin à la ligne :")
                 print(ligne)
 
-    return dico1
+    return dico
 
 
-def DicoStat(dico1):
-    #Création du deuxième dictionnaire avec les statistiques
+def DicoStat(dicoListe):
+    #Création du deuxième dictionnaire avec les statistiques de l'intensité
 
-    dico2={}
+    dicoSortie={} #Dictionnaire de sortie
 
-    for plage in dico1:
+    for plage in dicoListe:
         
-        liste=dico1[plage] #Liste des intensités pour cette plage
+        liste=dicoListe[plage] #Liste des intensités pour cette plage
         liste.sort()
         nombre=len(liste)
         
@@ -128,9 +128,9 @@ def DicoStat(dico1):
             maximum=None
             #J'ai choisi de mettre None quand il n'y a pas de donnée car 0 est en soi une intensité donc physiquement c'est faux
 
-        dico2[plage]=[nombre,minimum,moyenne,maximum]
+        dicoSortie[plage]=[nombre,minimum,moyenne,maximum]
 
-    return dico2
+    return dicoSortie
 
 help()
 #Le help() sert ici lorsque ce script est lancé seul. Il vérifie juste que les paramètres d'entrée soit bon même si en soit il ne renvoie rien
