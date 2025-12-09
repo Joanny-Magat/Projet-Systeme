@@ -1,4 +1,4 @@
-# Projet-Systeme
+# Projet Système (Physique Numérique)
 Auteur : Joanny Magat <br>
 Mail Etudiant : joanny.magat@etu.umontpellier.fr <br>
 Mail Perso : joanny.magat@gmail.com <br>
