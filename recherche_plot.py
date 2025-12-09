@@ -27,14 +27,14 @@ def demandeIntervalle(tailleFenetre):
         
         intervalleMin=float(input("Borne inférieur de l'intervalle :"))
         intervalleMax=float(input("Borne supérieur de l'intervalle :"))
-
+        
         tailleFenetreEntier=tailleFenetre #Si la tailleFenetre n'est pas entière
         iTailleFenetre=0 #Compteurs permettant de savoir combien de fois on a multiplié tailleFenetre par 10 jusqu'à avoir un entier
 
         while not tailleFenetreEntier.is_integer():
-            tailleFenetreEntier=tailleFenetreEntier*10**iTailleFenetre
             iTailleFenetre+=1
-
+            tailleFenetreEntier=tailleFenetreEntier*10**iTailleFenetre
+       
         if intervalleMin*10**iTailleFenetre % int(tailleFenetreEntier) == 0 and intervalleMax*10**iTailleFenetre % int(tailleFenetreEntier) == 0 and 0<=intervalleMin<intervalleMax :
             #On a testé si les bornes étaient multiples de tailleFenetre pour avoir les bonnes plages par la suite
             intervallePasBon = False
