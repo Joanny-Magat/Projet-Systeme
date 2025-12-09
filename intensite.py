@@ -20,9 +20,15 @@ def help():
     if len(sys.argv)==2 :
         cheminFichier = sys.argv[1]
         tailleFenetre = 10.0
+        if open(cheminFichier) == 0:
+            print("ERREUR : le fichier ne renvoie aucune information")
+            exit()
     elif len(sys.argv)==3 :
         cheminFichier = sys.argv[1]
         tailleFenetre = float(sys.argv[2])
+        if open(cheminFichier) == 0:
+            print("ERREUR : le fichier ne renvoie aucune information")
+            exit()
         if tailleFenetre <=0 :
             print("ERREUR : la taille de fenêtre de longueur d'onde doit être > 0")
             exit()
@@ -61,48 +67,42 @@ def premierDico(cheminFichier,tailleFenetre):
 
 
     fd=open(cheminFichier)
-
-    if fd != 0 :
+     
+    lignes = fd.readlines()
         
-        lignes = fd.readlines()
-        
-        for ligne in lignes :
+    for ligne in lignes :
             
-            res=re.search("(^\d+\.\d+).(-?\d+\.\d+)",ligne)
-            #le ^ c'est pour le début, \d c'est pour un chiffre, le + c'est une répétition du terme d'avant, . c'est pour n'importe quel caractère, le ? c'est pour optionnel
+        res=re.search("(^\d+\.\d+).(-?\d+\.\d+)",ligne)
+        #le ^ c'est pour le début, \d c'est pour un chiffre, le + c'est une répétition du terme d'avant, . c'est pour n'importe quel caractère, le ? c'est pour optionnel
             
-            if res : #Permet de ne sélectionner que les lignes avec les données 
+        if res : #Permet de ne sélectionner que les lignes avec les données 
                 
-                longueur=float(res.group(1))
-                intensite=float(res.group(2))
-                
-
-                if plageMin <= longueur and longueur < plageMax : #On est dans la plage donc la clée est déjà créé
-                    dico1[plage].append(intensite)
+            longueur=float(res.group(1))
+            intensite=float(res.group(2))
                 
 
-                elif longueur >= plageMax :                                   #On sort de la plage mais on n'est pas forcément dans la plage suivante !
-                    while not(plageMin <= longueur and longueur < plageMax) : #Tant qu'on n'est pas dans la plage...
-                        plageMin = plageMax                                   #La plage min devient l'ancienne plage max
-                        if tailleFenetre.is_integer():                        #On rajoute le pas à la plage max et on nomme la nouvelle plage
-                            plageMax += int(tailleFenetre)                    #Entier pour l'encodage du dico 
-                            plage = f"{str(plageMin)}-{str(plageMax)}nm"                   
-                        else :
-                            plageMax += tailleFenetre
-                            plage = f"{str(round(plageMin,nbDecimal))}-{str(round(plageMax,nbDecimal))}nm" 
-                        dico1[plage]=[]                                       #On crée l'entrée du dico pour cette plage avec une valeur vide
-                    #A la sortie du while, la clée est créée pour la longueur actuelle
-                    dico1[plage].append(intensite)
+            if plageMin <= longueur and longueur < plageMax : #On est dans la plage donc la clée est déjà créé
+                dico1[plage].append(intensite)
+                
+
+            elif longueur >= plageMax :                                   #On sort de la plage mais on n'est pas forcément dans la plage suivante !
+                while not(plageMin <= longueur and longueur < plageMax) : #Tant qu'on n'est pas dans la plage...
+                    plageMin = plageMax                                   #La plage min devient l'ancienne plage max
+                    if tailleFenetre.is_integer():                        #On rajoute le pas à la plage max et on nomme la nouvelle plage
+                        plageMax += int(tailleFenetre)                    #Entier pour l'encodage du dico 
+                        plage = f"{str(plageMin)}-{str(plageMax)}nm"                   
+                    else :
+                        plageMax += tailleFenetre
+                        plage = f"{str(round(plageMin,nbDecimal))}-{str(round(plageMax,nbDecimal))}nm" 
+                    dico1[plage]=[]                                       #On crée l'entrée du dico pour cette plage avec une valeur vide
+                #A la sortie du while, la clée est créée pour la longueur actuelle
+                dico1[plage].append(intensite)
 
 
-                else : # longueur < plageMin ce qui est normalement impossible
-                    print("ERREUR : longueur < plageMin à la ligne :")
-                    print(ligne)
+            else : # longueur < plageMin ce qui est normalement impossible
+                print("ERREUR : longueur < plageMin à la ligne :")
+                print(ligne)
 
-    else :
-        print("ERREUR : le fichier ne marche pas")
-        exit()
-    
     return dico1
 
 
