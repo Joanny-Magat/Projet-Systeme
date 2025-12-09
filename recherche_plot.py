@@ -40,7 +40,7 @@ def demandeIntervalle(tailleFenetre):
             intervallePasBon = False
 
         else :
-            print("Bornes invalides par rapport à la taille des fenêtres de longueurs d'ondes")
+            print("ERREUR : Bornes invalides par rapport à la taille des fenêtres de longueurs d'ondes")
 
     return intervalleMin,intervalleMax
 
@@ -146,5 +146,13 @@ while ScriptNonFini :
         ScriptNonFini=False #En soi inutile car on met un exit() après mais je le met au cas où
         exit()
     else :
-        tailleFenetre=float(input("Nouvelle taille de fenêtre de longueur d'onde ?"))
+        
+        tailleFenetrePasBon=True
+        while tailleFenetrePasBon :
+            tailleFenetre=float(input("Nouvelle taille de fenêtre de longueur d'onde ?"))
+            if tailleFenetre <= 0:
+                print("ERREUR : la taille de fenêtre doit être strictement positive !")
+            else :
+                tailleFenetrePasBon=False
+        
         dico=intensite.DicoStat(intensite.DicoListe(cheminFichier,tailleFenetre))
